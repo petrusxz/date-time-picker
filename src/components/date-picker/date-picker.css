@@ -1,0 +1,43 @@
+.calendar-container {
+  max-width: 800px;
+  min-width: 400px;
+  margin: auto;
+}
+
+.calendar-header {
+  width: 100%;
+  height: 40px;
+  margin: 16px 0 8px 0;
+}
+
+#active-month {
+  font-size: 1.4em;
+  float: left;
+}
+
+button {
+  cursor: pointer;
+  border: unset;
+  outline: unset;
+}
+
+button[id$="ctrl"] {
+  height: 26px;
+  font-size: .8em;
+  background-color: #fff;
+  color: #7b7b7b;
+  float: right;
+}
+
+button[id$="ctrl"]:hover {
+  color: #488aff;
+  border-color: #488aff !important;
+}
+
+
+button#previous-ctrl,
+button#next-ctrl {
+  width: 26px;
+  border-radius: 50%;
+  border: 1px solid #7b7b7b;
+}

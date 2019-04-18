@@ -8,7 +8,6 @@
 import '@stencil/core';
 
 import '@stencil/redux';
-import '@stencil/state-tunnel';
 
 
 export namespace Components {

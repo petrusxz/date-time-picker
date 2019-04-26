@@ -31,8 +31,11 @@ export class AppDateTime {
 
   render() {
     return (
-      <div>
+      <div class="calendar-container">
         <date-picker></date-picker>
+        <footer>
+          {this.dateTime.toLocaleDateString()}
+        </footer>
       </div>
     );
   }

@@ -19,3 +19,13 @@ tr {
 td {
   text-align: center;
 }
+
+.calendar-container {
+  max-width: 430px;
+  min-width: 300px;
+  margin: auto;
+}
+
+footer {
+  text-align: center;
+}

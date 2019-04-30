@@ -91,19 +91,17 @@ export class DatePicker {
                 </div>
 
                 <table>
-                    <thead>
+                    <tr>
                         {this.weekdaysNames.map(dayName =>
                             <th>{dayName}</th>
                         )}
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {this.generateWeekRow(this.daysOfWeek)}
-                        </tr>
-                        <tr>
-                            {this.generateWeekRow(this.daysOfNextWeek)}
-                        </tr>
-                    </tbody>
+                    </tr>
+                    <tr>
+                        {this.generateWeekRow(this.daysOfWeek)}
+                    </tr>
+                    <tr>
+                        {this.generateWeekRow(this.daysOfNextWeek)}
+                    </tr>
                 </table>
             </div>
         );

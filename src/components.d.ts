@@ -17,17 +17,22 @@ export namespace Components {
 
   interface DatePicker {}
   interface DatePickerAttributes extends StencilHTMLAttributes {}
+
+  interface TimePicker {}
+  interface TimePickerAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
   interface StencilElementInterfaces {
     'AppDateTime': Components.AppDateTime;
     'DatePicker': Components.DatePicker;
+    'TimePicker': Components.TimePicker;
   }
 
   interface StencilIntrinsicElements {
     'app-date-time': Components.AppDateTimeAttributes;
     'date-picker': Components.DatePickerAttributes;
+    'time-picker': Components.TimePickerAttributes;
   }
 
 
@@ -43,14 +48,22 @@ declare global {
     new (): HTMLDatePickerElement;
   };
 
+  interface HTMLTimePickerElement extends Components.TimePicker, HTMLStencilElement {}
+  var HTMLTimePickerElement: {
+    prototype: HTMLTimePickerElement;
+    new (): HTMLTimePickerElement;
+  };
+
   interface HTMLElementTagNameMap {
     'app-date-time': HTMLAppDateTimeElement
     'date-picker': HTMLDatePickerElement
+    'time-picker': HTMLTimePickerElement
   }
 
   interface ElementTagNameMap {
     'app-date-time': HTMLAppDateTimeElement;
     'date-picker': HTMLDatePickerElement;
+    'time-picker': HTMLTimePickerElement;
   }
 
 

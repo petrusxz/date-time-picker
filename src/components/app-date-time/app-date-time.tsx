@@ -12,6 +12,8 @@ export class AppDateTime {
   @Prop({ context: 'store' }) store: Store;
   @State() dateTime: Date = new Date();
 
+  @State() activeTab: number = 0;
+
   @Watch('dateTime')
   updateList() {
     console.log(this.dateTime);
@@ -29,10 +31,23 @@ export class AppDateTime {
     });
   }
 
+  private setActiveTab(idx: number) {
+    this.activeTab = idx;
+  }
+
   render() {
     return (
       <div class="calendar-container">
-        <date-picker></date-picker>
+
+        <div class="segments">
+          <button type="button" class={{ 'active': this.activeTab === 0 }} onClick={() => this.setActiveTab(0)}>DATE</button>
+          <button type="button" class={{ 'active': this.activeTab === 1 }} onClick={() => this.setActiveTab(1)}>TIME</button>
+        </div>
+
+        {this.activeTab === 0 
+          ? <date-picker></date-picker>
+          : <time-picker></time-picker>
+        }
         <footer>
           {this.dateTime.toLocaleDateString()}
         </footer>

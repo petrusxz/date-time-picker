@@ -6,6 +6,12 @@ body {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+  border: unset;
+  outline: unset;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -28,4 +34,39 @@ td {
 
 footer {
   text-align: center;
+}
+
+.segments {
+  width: 100%;
+}
+
+.segments button {
+  width: 50%;
+  background-color: unset;
+  border: unset;
+  position: relative;
+  font-family: Georgia, serif;
+  font-size: 1em;
+  padding: 12px 8px;
+}
+
+.segments button:active {
+  color: #488aff;
+}
+
+.segments button:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  width: 86%;
+  margin: auto;
+  border-bottom: 2px solid;
+  transform: scaleX(0);
+  transition: 0.8s ease-in-out;
+}
+
+.segments button.active:after {
+  transform: scaleX(1);
 }

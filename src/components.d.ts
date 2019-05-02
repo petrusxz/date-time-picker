@@ -8,6 +8,9 @@
 import '@stencil/core';
 
 import '@stencil/redux';
+import {
+  TimeRange,
+} from './components/time-picker/time-picker';
 
 
 export namespace Components {
@@ -18,8 +21,14 @@ export namespace Components {
   interface DatePicker {}
   interface DatePickerAttributes extends StencilHTMLAttributes {}
 
-  interface TimePicker {}
-  interface TimePickerAttributes extends StencilHTMLAttributes {}
+  interface TimePicker {
+    'hourRange': TimeRange;
+    'minutes': Array<number>;
+  }
+  interface TimePickerAttributes extends StencilHTMLAttributes {
+    'hourRange'?: TimeRange;
+    'minutes'?: Array<number>;
+  }
 }
 
 declare global {

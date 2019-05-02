@@ -10,13 +10,18 @@ import { configureStore } from '../../store/store';
 export class AppDateTime {
 
   @Prop({ context: 'store' }) store: Store;
-  @State() dateTime: Date = new Date();
-
+  @State() startDateTime: Date = new Date();
+  @State() endDateTime: Date = new Date();
   @State() activeTab: number = 0;
 
-  @Watch('dateTime')
-  updateList() {
-    console.log(this.dateTime);
+  @Watch('startDateTime')
+  updateStart() {
+    console.log('Start at =>', this.startDateTime);
+  }
+
+  @Watch('endDateTime')
+  updateEnd() {
+    console.log('End at =>', this.endDateTime);
   }
 
   componentWillLoad() {
@@ -26,7 +31,8 @@ export class AppDateTime {
 
     mapStateToProps(this, state => {
       return {
-        dateTime: state.selectedDate.date
+        startDateTime: state.selectedDate.startDateTime,
+        endDateTime: state.selectedDate.endDateTime
       }
     });
   }
@@ -35,21 +41,29 @@ export class AppDateTime {
     this.activeTab = idx;
   }
 
+  private getFormatSelectedDateTime(): string {
+    const date = this.startDateTime.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    return date;
+  }
+
   render() {
     return (
-      <div class="calendar-container">
-
+      <div class="app-container">
         <div class="segments">
           <button type="button" class={{ 'active': this.activeTab === 0 }} onClick={() => this.setActiveTab(0)}>DATE</button>
           <button type="button" class={{ 'active': this.activeTab === 1 }} onClick={() => this.setActiveTab(1)}>TIME</button>
         </div>
 
-        {this.activeTab === 0 
-          ? <date-picker></date-picker>
-          : <time-picker></time-picker>
-        }
+        <div class="picker-container">
+
+          {this.activeTab === 0
+            ? <date-picker></date-picker>
+            : <time-picker></time-picker>
+          }
+        </div>
+
         <footer>
-          {this.dateTime.toLocaleDateString()}
+          {this.getFormatSelectedDateTime()}
         </footer>
       </div>
     );

@@ -1,13 +1,11 @@
 .calendar-header {
   width: 100%;
   height: 40px;
-  margin: 16px 0 8px 0;
 }
 
 #active-month {
   font-size: 1.4em;
   float: left;
-  padding-left: 16px;
 }
 
 button,
@@ -23,16 +21,26 @@ button[id$="ctrl"] {
   background-color: #fff;
   color: #7b7b7b;
   float: right;
+  text-align: center;
+  padding: 0;
 }
 
-button[id$="ctrl"]:hover:not(:disabled) {
+button[id$="ctrl"]:hover:not(:disabled),
+td:hover:not(.readonly) {
   color: #488aff;
   border-color: #488aff !important;
 }
 
-button#previous-ctrl,
+button#today-ctrl {
+  padding: 0 4px;
+}
+
+button#previous-ctrl {
+  padding-right: 8px;
+}
+
 button#next-ctrl {
-  width: 26px;
+  padding-left: 8px;
 }
 
 button[disabled] {
@@ -41,17 +49,35 @@ button[disabled] {
 
 table {
   width: 100%;
+  table-layout: fixed
+}
+
+tr {
+  height: 30px;
 }
 
 td {
   text-align: center;
 }
 
-.readonly {
-  color: #b7b7b7;
+td.selectedDate span {
+  display: block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 50%;
+  margin: auto;
+  background-color: #488aff;
+  color: #fff;
 }
 
-.selectedDate {
-  color: #488aff;
-  font-weight: bold;
+th {
+  text-transform: uppercase;
+  font-weight: unset;
+  font-size: .9em;
+}
+
+.readonly,
+th {
+  color: #b7b7b7;
 }

@@ -2,23 +2,29 @@ import { combineReducers } from 'redux'
 import * as actions from './actions'
 
 const selectedDateState = {
-    date: new Date()
+    startDateTime: new Date(),
+    endDateTime: new Date()
 };
 
 function selectedDate(state = selectedDateState, action) {
-    const { type, date } = action
+    const { type, startDateTime, endDateTime } = action;
 
     switch (type) {
-        case actions.SET_DATE:
+        case actions.SET_START_DATE:
             return {
                 ...state,
-                date
+                startDateTime
+            }
+        case actions.SET_END_DATE:
+            return {
+                ...state,
+                endDateTime
             }
         default:
             return state
     }
 }
 
-const rootReducer = combineReducers({ selectedDate })
+const rootReducer = combineReducers({ selectedDate });
 
-export default rootReducer
+export default rootReducer;

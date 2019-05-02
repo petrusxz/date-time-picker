@@ -26,14 +26,17 @@ td {
   text-align: center;
 }
 
-.calendar-container {
+.app-container {
   max-width: 430px;
   min-width: 300px;
   margin: auto;
 }
 
-footer {
-  text-align: center;
+.picker-container {
+  height: 150px;
+  max-width: 430px;
+  min-width: 300px;
+  margin-top: 16px;
 }
 
 .segments {
@@ -60,7 +63,7 @@ footer {
   bottom: -1px;
   left: 0;
   right: 0;
-  width: 86%;
+  width: 100%;
   margin: auto;
   border-bottom: 2px solid;
   transform: scaleX(0);

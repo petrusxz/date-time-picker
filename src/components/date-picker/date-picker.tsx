@@ -2,7 +2,7 @@ import { Component, Prop, State } from '@stencil/core';
 import { getDaysOfTheWeek, getWeekdayNames } from '../../utils/utils';
 import { Day } from '../../models/day.model';
 import { Store, Action } from '@stencil/redux';
-import { setActualDate } from '../../store/actions';
+import { setStartDateTime } from '../../store/actions';
 
 @Component({
     tag: 'date-picker',
@@ -16,13 +16,13 @@ export class DatePicker {
     @State() activeDate: Date = new Date();
     @State() selectedDate: Date;
 
-    setActualDate: Action;
+    setStartDateTime: Action;
 
     private weekdaysNames: string[];
 
     componentWillLoad(): void {
         this.store.mapDispatchToProps(this, {
-            setActualDate
+            setStartDateTime
         });
         this.weekdaysNames = getWeekdayNames();
         this.setWeekDays();
@@ -39,6 +39,12 @@ export class DatePicker {
         const nextWeekDate = new Date(weekDate);
         nextWeekDate.setDate(weekDate.getDate() + 1);
         this.daysOfNextWeek = getDaysOfTheWeek(nextWeekDate);
+    }
+
+    private getActiveMonth(): string {
+        const monthName = this.activeDate.toLocaleDateString('en-US', { month: 'long' });
+        const year = this.activeDate.getFullYear();
+        return `${monthName}, ${year}`;
     }
 
     /**
@@ -59,7 +65,7 @@ export class DatePicker {
 
     private setSelectedDate(date: Date): void {
         this.selectedDate = date;
-        this.setActualDate(this.selectedDate);
+        this.setStartDateTime(this.selectedDate);
     }
 
     private generateWeekRow(days: Day[]): JSX.Element[] {
@@ -70,16 +76,16 @@ export class DatePicker {
                     'selectedDate': day.weekDay.getTime() === this.selectedDate.getTime()
                 }}
                 onClick={() => { if (!day.isReadonly) this.setSelectedDate(day.weekDay) }}>
-                {day.dayNumber}
+                <span>{day.dayNumber}</span>
             </td>
         );
     }
 
-    render() {
+    render(): JSX.Element {
         return (
-            <div class="calendar-container">
+            <div>
                 <div class="calendar-header">
-                    <div id="active-month">{this.activeDate.toLocaleDateString('en-US', { month: 'long' })}</div>
+                    <div id="active-month">{this.getActiveMonth()}</div>
                     <button id="next-ctrl" onClick={() => this.setCurrentMonthDates(1)}>&rang;</button>
                     <button id="today-ctrl" onClick={() => this.setCurrentMonthDates()}>Today</button>
                     <button
